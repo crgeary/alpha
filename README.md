@@ -1,0 +1,7 @@
+# Studio
+
+> 🦄
+
+## License
+
+[MIT](./LICENSE)
