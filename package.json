@@ -1,0 +1,21 @@
+{
+    "private": true,
+    "version": "0.0.0",
+    "scripts": {
+        "format": "prettier --write .",
+        "format:check": "prettier --check ."
+    },
+    "devDependencies": {
+        "prettier": "^2.6.2"
+    },
+    "author": "Christopher Geary",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/crgeary/studio.git"
+    },
+    "bugs": {
+        "url": "https://github.com/crgeary/studio/issues"
+    },
+    "homepage": "https://github.com/crgeary/studio#readme"
+}
