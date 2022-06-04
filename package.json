@@ -3,9 +3,12 @@
     "version": "0.0.0",
     "scripts": {
         "format": "prettier --write .",
-        "format:check": "prettier --check ."
+        "format:check": "prettier --check .",
+        "prepare": "husky install"
     },
     "devDependencies": {
+        "husky": "^8.0.1",
+        "lint-staged": "^13.0.0",
         "prettier": "^2.6.2"
     },
     "author": "Christopher Geary",
