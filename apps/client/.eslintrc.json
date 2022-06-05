@@ -1,0 +1,6 @@
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["prettier", "@typescript-eslint"],
+    "extends": ["prettier", "next/core-web-vitals"]
+}
