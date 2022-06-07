@@ -1,5 +1,8 @@
+import "reflect-metadata";
 import { AppProps } from "next/app";
 import { MantineProvider } from "@mantine/core";
+import { ContainerProvider } from "../lib/container/context";
+import { container } from "../lib/container/container";
 
 export default function App({ Component, pageProps }: AppProps) {
     return (
@@ -11,7 +14,9 @@ export default function App({ Component, pageProps }: AppProps) {
                 fontFamily: "Inter, sans-serif",
             }}
         >
-            <Component {...pageProps} />
+            <ContainerProvider container={container}>
+                <Component {...pageProps} />
+            </ContainerProvider>
         </MantineProvider>
     );
 }
