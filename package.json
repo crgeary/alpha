@@ -17,10 +17,10 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/crgeary/studio.git"
+        "url": "git+https://github.com/crgeary/alpha.git"
     },
     "bugs": {
-        "url": "https://github.com/crgeary/studio/issues"
+        "url": "https://github.com/crgeary/alpha/issues"
     },
-    "homepage": "https://github.com/crgeary/studio#readme"
+    "homepage": "https://github.com/crgeary/alpha#readme"
 }
