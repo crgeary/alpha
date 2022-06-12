@@ -1,5 +1,5 @@
+import { NotFoundException } from "@app/common";
 import { Service } from "typedi";
-import { NotFoundException } from "../../../common/exceptions";
 import { prisma } from "../../../db";
 import { UserDto } from "../dto/user.dto";
 
@@ -11,7 +11,7 @@ export class UserService {
         });
 
         if (!user) {
-            throw new NotFoundException();
+            throw new NotFoundException(`User with id '${id}' does not exist`);
         }
 
         return UserDto.fromUser(user);

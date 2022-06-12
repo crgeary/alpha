@@ -1,5 +1,5 @@
-import { Type } from "./type.type";
+import { Class } from "type-fest";
 
 export type Module = {
-    controllers: Type[];
+    controllers: Class<unknown>[];
 };

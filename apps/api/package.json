@@ -13,12 +13,12 @@
         "db:migrate": "prisma migrate deploy --schema=./src/db/schema.prisma"
     },
     "dependencies": {
+        "@app/common": "0.0.0",
         "@prisma/client": "^3.15.1",
         "add": "^2.0.6",
         "class-transformer": "^0.5.1",
         "class-validator": "^0.13.2",
         "express": "^4.18.1",
-        "pnpm": "^7.2.1",
         "reflect-metadata": "^0.1.13",
         "routing-controllers": "^0.9.0",
         "typedi": "^0.10.0"
@@ -34,6 +34,7 @@
         "nodemon": "^2.0.16",
         "prisma": "^3.15.1",
         "ts-node": "^10.8.1",
+        "type-fest": "^2.13.0",
         "typescript": "4.7.3"
     }
 }
