@@ -7,6 +7,7 @@
         "check-ts": "tsc --noEmit --project tsconfig.json",
         "dev": "nodemon --exec 'ts-node' src/server.ts",
         "lint": "eslint",
+        "postinstall": "pnpm db:schema:generate",
         "db:schema:generate": "prisma generate --schema=./src/db/schema.prisma",
         "db:migrate:dev": "prisma migrate dev --schema=./src/db/schema.prisma",
         "db:migrate": "prisma migrate deploy --schema=./src/db/schema.prisma"
