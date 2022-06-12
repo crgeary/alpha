@@ -1,0 +1,38 @@
+{
+    "name": "@app/client",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "build": "tsc --project tsconfig.json",
+        "check-ts": "tsc --noEmit --project tsconfig.json",
+        "dev": "nodemon --exec 'ts-node' src/server.ts",
+        "lint": "eslint",
+        "db:schema:generate": "prisma generate --schema=./src/db/schema.prisma",
+        "db:migrate:dev": "prisma migrate dev --schema=./src/db/schema.prisma",
+        "db:migrate": "prisma migrate deploy --schema=./src/db/schema.prisma"
+    },
+    "dependencies": {
+        "@prisma/client": "^3.15.1",
+        "add": "^2.0.6",
+        "class-transformer": "^0.5.1",
+        "class-validator": "^0.13.2",
+        "express": "^4.18.1",
+        "pnpm": "^7.2.1",
+        "reflect-metadata": "^0.1.13",
+        "routing-controllers": "^0.9.0",
+        "typedi": "^0.10.0"
+    },
+    "devDependencies": {
+        "@types/express": "^4.17.13",
+        "@types/node": "17.0.40",
+        "@typescript-eslint/eslint-plugin": "^5.27.0",
+        "@typescript-eslint/parser": "^5.27.0",
+        "eslint": "8.17.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-prettier": "^4.0.0",
+        "nodemon": "^2.0.16",
+        "prisma": "^3.15.1",
+        "ts-node": "^10.8.1",
+        "typescript": "4.7.3"
+    }
+}
