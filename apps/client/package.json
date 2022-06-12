@@ -6,8 +6,7 @@
         "build": "next build",
         "check-ts": "tsc --noEmit --project tsconfig.json",
         "dev": "next dev",
-        "lint": "next lint",
-        "start": "next start"
+        "lint": "next lint"
     },
     "dependencies": {
         "@faker-js/faker": "^7.2.0",
