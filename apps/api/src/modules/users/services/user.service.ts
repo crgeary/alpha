@@ -16,4 +16,8 @@ export class UserService {
 
         return UserDto.fromUser(user);
     }
+
+    async findMany(): Promise<UserDto[]> {
+        return (await prisma.user.findMany()).map(UserDto.fromUser);
+    }
 }
