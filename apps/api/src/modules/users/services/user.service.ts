@@ -1,9 +1,9 @@
 import { NotFoundException } from "@app/common";
 import { Service } from "typedi";
 import { prisma } from "../../../db";
-import { CreateUserDto } from "../dto/create-user.dto";
-import { UpdateUserDto } from "../dto/update-user.dto";
-import { UserDto } from "../dto/user.dto";
+import { CreateUserDto } from "../dtos/create-user.dto";
+import { UpdateUserDto } from "../dtos/update-user.dto";
+import { UserDto } from "../dtos/user.dto";
 
 @Service()
 export class UserService {
