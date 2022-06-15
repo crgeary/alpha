@@ -4,7 +4,7 @@ import { HttpException } from "./http-exception.exception";
 export class UnprocessableEntityException extends HttpException {
     name = "UnprocessableEntityException";
 
-    constructor(message?: string) {
-        super(HttpStatus.UNPROCESSABLE_ENTITY, message);
+    constructor(message?: string, public meta?: Record<string, any>) {
+        super(HttpStatus.UNPROCESSABLE_ENTITY, message, meta);
     }
 }

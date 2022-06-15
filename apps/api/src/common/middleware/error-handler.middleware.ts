@@ -1,28 +1,50 @@
-import { HttpException, HttpStatus, isEnv } from "@app/common";
+import { HttpException, HttpStatus, isEnv, UnprocessableEntityException } from "@app/common";
+import { ValidationError } from "class-validator";
 import { NextFunction, Request, Response } from "express";
-import { Middleware, ExpressErrorMiddlewareInterface } from "routing-controllers";
+import { Middleware, ExpressErrorMiddlewareInterface, BadRequestError } from "routing-controllers";
 import { Service } from "typedi";
+
+const isValidationError = (
+    err: unknown,
+): err is BadRequestError & { errors: ValidationError[] } => {
+    return err instanceof BadRequestError && "errors" in err;
+};
 
 @Service()
 @Middleware({ type: "after" })
 export class ErrorHandler implements ExpressErrorMiddlewareInterface {
-    error(err: Error, _: Request, res: Response, next: NextFunction) {
+    error(error: Error, _: Request, res: Response, next: NextFunction) {
+        const err = this.transformError(error);
+
         const status =
             err instanceof HttpException ? err.statusCode : HttpStatus.INTERNAL_SERVER_ERROR;
 
         res.status(status).json({
-            errors: [
-                {
-                    status,
-                    name: err.name,
-                    message: err.message || undefined,
-                    code: undefined,
-                    stack: isEnv("development") ? this.parseStackTrace(err.stack) : undefined,
+            error: {
+                status,
+                name: err.name,
+                message: err.message || undefined,
+                meta: {
+                    properties:
+                        err instanceof UnprocessableEntityException ? err.meta?.errors : undefined,
                 },
-            ],
+                stack: isEnv("development") ? this.parseStackTrace(err.stack) : undefined,
+            },
         });
 
         next();
+    }
+
+    transformError(err: Error) {
+        if (isValidationError(err)) {
+            return new UnprocessableEntityException("Validation error", {
+                errors: err.errors.map((err) => ({
+                    name: err.property,
+                    messages: err.constraints ? Object.values(err.constraints) : [],
+                })),
+            });
+        }
+        return err;
     }
 
     parseStackTrace(stack: string | undefined) {
