@@ -3,6 +3,7 @@ import { prisma } from "../../../db";
 import { UnauthorizedException } from "@app/common";
 import { comparePassword } from "../utils/password.util";
 import { UserDto } from "../dtos/user.dto";
+import { createAccessToken } from "../utils/jwt.util";
 
 @Service()
 export class AuthService {
@@ -26,8 +27,10 @@ export class AuthService {
 
     async loginWithCredentials(email: string, password: string) {
         const user = await this.validateUserByCredentials(email, password);
+        const accessToken = await createAccessToken(user.id);
 
         return {
+            accessToken,
             user,
         };
     }

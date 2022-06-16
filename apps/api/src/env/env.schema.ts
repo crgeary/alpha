@@ -1,5 +1,5 @@
 import { NodeEnv } from "@app/common";
-import { IsIn, IsString } from "class-validator";
+import { IsIn, IsString, MinLength } from "class-validator";
 
 export class EnvSchema {
     @IsIn(["development", "production", "test"])
@@ -7,4 +7,8 @@ export class EnvSchema {
 
     @IsString()
     DATABASE_URL!: string;
+
+    @IsString()
+    @MinLength(32)
+    JWT_ACCESS_TOKEN_SECRET!: string;
 }

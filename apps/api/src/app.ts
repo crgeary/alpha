@@ -5,8 +5,11 @@ import { Container } from "typedi";
 import { userModule } from "./modules/users";
 import { ErrorHandler } from "./common/middleware/error-handler.middleware";
 import { HttpStatus } from "@app/common";
+import cookieParser from "cookie-parser";
 
 const app = express();
+
+app.use(cookieParser());
 
 useContainer(Container);
 
