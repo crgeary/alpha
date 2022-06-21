@@ -11,4 +11,8 @@ export class EnvSchema {
     @IsString()
     @MinLength(32)
     JWT_ACCESS_TOKEN_SECRET!: string;
+
+    @IsString()
+    @MinLength(32)
+    JWT_REFRESH_TOKEN_SECRET!: string;
 }

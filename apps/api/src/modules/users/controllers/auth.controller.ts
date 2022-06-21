@@ -1,10 +1,11 @@
-import { isEnv } from "@app/common";
 import { Response } from "express";
 import ms from "ms";
-import { Body, CookieParam, JsonController, Post, Res } from "routing-controllers";
+import { Body, JsonController, Post, Res } from "routing-controllers";
 import { Service } from "typedi";
+import { JWT_ACCESS_TOKEN_LIFETIME, JWT_REFRESH_TOKEN_LIFETIME } from "../constants";
 import { LoginDto } from "../dtos/login.dto";
 import { AuthService } from "../services/auth.service";
+import { getAuthCookieOptions } from "../utils/cookie.util";
 
 @Service()
 @JsonController("/auth")
@@ -13,23 +14,30 @@ export class AuthController {
 
     @Post("/token")
     async login(@Body() loginDto: LoginDto, @Res() res: Response) {
-        const { user, accessToken } = await this.authService.loginWithCredentials(
+        const { user, accessToken, refreshToken } = await this.authService.loginWithCredentials(
             loginDto.email,
             loginDto.password,
         );
 
-        res.cookie("auth", accessToken, {
-            httpOnly: true,
-            path: "/",
-            sameSite: isEnv("production") ? "strict" : "lax",
-            secure: isEnv("production"),
-            maxAge: ms("1h"),
-        });
-
-        return res.json({
-            data: {
-                user,
-            },
-        });
+        return res
+            .cookie(
+                "auth.at",
+                accessToken,
+                getAuthCookieOptions({
+                    maxAge: ms(JWT_ACCESS_TOKEN_LIFETIME),
+                }),
+            )
+            .cookie(
+                "auth.rt",
+                refreshToken,
+                getAuthCookieOptions({
+                    maxAge: ms(JWT_REFRESH_TOKEN_LIFETIME),
+                }),
+            )
+            .json({
+                data: {
+                    user,
+                },
+            });
     }
 }

@@ -3,10 +3,12 @@ import { prisma } from "../../../db";
 import { UnauthorizedException } from "@app/common";
 import { comparePassword } from "../utils/password.util";
 import { UserDto } from "../dtos/user.dto";
-import { createAccessToken } from "../utils/jwt.util";
+import { JwtService } from "./jwt.service";
 
 @Service()
 export class AuthService {
+    constructor(private readonly jwtService: JwtService) {}
+
     async validateUserByCredentials(email: string, password: string): Promise<UserDto> {
         const user = await prisma.user.findUnique({
             where: { email },
@@ -27,10 +29,10 @@ export class AuthService {
 
     async loginWithCredentials(email: string, password: string) {
         const user = await this.validateUserByCredentials(email, password);
-        const accessToken = await createAccessToken(user.id);
+        const tokens = await this.jwtService.createAuthTokens(user.id);
 
         return {
-            accessToken,
+            ...tokens,
             user,
         };
     }
