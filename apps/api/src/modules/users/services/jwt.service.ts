@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import { prisma } from "../../../db";
 import { RefreshTokenStatus } from "@prisma/client";
 import { isNil, isObject } from "lodash";
-import { AccessTokenPayload, RefreshTokenPayload } from "../types/jwt";
+import { AccessTokenPayload, RefreshTokenPayload } from "../types/jwt.type";
 import { JWT_ACCESS_TOKEN_LIFETIME, JWT_REFRESH_TOKEN_LIFETIME } from "../constants";
 
 @Service()
