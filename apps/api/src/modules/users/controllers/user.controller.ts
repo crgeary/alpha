@@ -8,13 +8,16 @@ import {
     Param,
     Patch,
     Post,
+    UseBefore,
 } from "routing-controllers";
 import { Service } from "typedi";
 import { CreateUserDto } from "../dtos/create-user.dto";
 import { UpdateUserDto } from "../dtos/update-user.dto";
+import { JwtAuthMiddleware } from "../middleware/jwt-auth.middleware";
 import { UserService } from "../services/user.service";
 
 @Service()
+@UseBefore(JwtAuthMiddleware)
 @JsonController("/users")
 export class UserController {
     constructor(private readonly userService: UserService) {}

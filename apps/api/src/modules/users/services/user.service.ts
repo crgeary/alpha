@@ -4,6 +4,8 @@ import { prisma } from "../../../db";
 import { CreateUserDto } from "../dtos/create-user.dto";
 import { UpdateUserDto } from "../dtos/update-user.dto";
 import { UserDto } from "../dtos/user.dto";
+import { hashPassword } from "../utils/password.util";
+import { isUndefined } from "lodash";
 
 @Service()
 export class UserService {
@@ -25,7 +27,10 @@ export class UserService {
 
     async create(createUserDto: CreateUserDto): Promise<UserDto> {
         const user = await prisma.user.create({
-            data: createUserDto,
+            data: {
+                ...createUserDto,
+                password: await hashPassword(createUserDto.password),
+            },
         });
 
         return UserDto.fromUser(user);
@@ -42,7 +47,12 @@ export class UserService {
 
         const user = await prisma.user.update({
             where: { id },
-            data: updateUserDto,
+            data: {
+                ...updateUserDto,
+                password: !isUndefined(updateUserDto.password)
+                    ? await hashPassword(updateUserDto.password)
+                    : undefined,
+            },
         });
 
         return UserDto.fromUser(user);

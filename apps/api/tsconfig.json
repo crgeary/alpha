@@ -6,6 +6,9 @@
         "lib": ["ES2022"],
         "outDir": "dist"
     },
-    "include": ["**/*.ts", "**/*.tsx"],
-    "exclude": ["node_modules"]
+    "include": ["env.d.ts", "**/*.ts", "**/*.tsx"],
+    "exclude": ["node_modules"],
+    "ts-node": {
+        "files": true
+    }
 }
