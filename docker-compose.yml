@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+  api:
+    build:
+      target: development
+      context: .
+      dockerfile: ./apps/api/docker/Dockerfile
+    container_name: api
+    env_file:
+      - ./apps/api/.env
+    environment:
+      PORT: 4000
+      NODE_ENV: development
+    ports:
+      - 4000:4000
+    volumes:
+      - /app/node_modules
+      - /app/apps/api/node_modules
+      - /app/apps/api/dist
+      - ./apps/api:/app/apps/api:cached
+      - ./packages:/app/packages:cached
+      - ./tsconfig.json:/app/tsconfig.json:cached
+    depends_on:
+      - db
+  db:
+    image: postgres:14-alpine
+    container_name: db
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: secret
+    ports:
+      - 5432:5432
+    volumes:
+      - db-volume:/var/lib/postgresql/data
+
+volumes:
+  db-volume:
