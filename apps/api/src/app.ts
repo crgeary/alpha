@@ -11,6 +11,8 @@ const app = express();
 
 app.use(cookieParser());
 
+app.use((req, res) => res.json({ message: "Hello, World!" }));
+
 useContainer(Container);
 
 useExpressServer(app, {
