@@ -2,10 +2,10 @@
     "private": true,
     "scripts": {
         "check-format": "prettier --check .",
-        "check-ts": "pnpm recursive run check-ts",
-        "dev": "pnpm recursive run dev",
+        "check-ts": "pnpm --recursive run check-ts",
+        "dev": "pnpm --recursive run dev --filter=api --filter=client",
         "format": "prettier --write .",
-        "lint": "pnpm recursive run lint",
+        "lint": "pnpm --recursive run lint",
         "prepare": "husky install"
     },
     "devDependencies": {
