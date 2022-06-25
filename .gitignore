@@ -6,4 +6,6 @@ package-lock.json
 *.tsbuildinfo
 .pnpm-debug.log*
 
+.terraform
+
 .DS_Store
