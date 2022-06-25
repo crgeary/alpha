@@ -55,11 +55,11 @@ jobs:
             - Initialization: \`${{ steps.init.outcome }}\`
             - Validation: \`${{ steps.validate.outcome }}\`
             - Plan: \`${{ steps.plan.outcome }}\`\n
-            <details><summary>Show Plan</summary>
+            <details><summary>Show Plan</summary>\n
             \`\`\`\n
             ${process.env.PLAN}
             \`\`\`
-            </details>
+            </details>\n
             *Pushed by: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
             github.rest.issues.createComment({
               issue_number: context.issue.number,
