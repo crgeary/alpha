@@ -7,5 +7,6 @@ package-lock.json
 .pnpm-debug.log*
 
 .terraform
+.terraform.lock.hcl
 
 .DS_Store
