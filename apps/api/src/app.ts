@@ -6,9 +6,11 @@ import { userModule } from "./modules/users";
 import { ErrorHandler } from "./common/middleware/error-handler.middleware";
 import { HttpStatus } from "@app/common";
 import cookieParser from "cookie-parser";
+import helmet from "helmet";
 
 const app = express();
 
+app.use(helmet());
 app.use(cookieParser());
 
 app.use((req, res) => res.json({ message: "Hello, World!" }));
