@@ -48,10 +48,10 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const output = `- Format: \`${{ steps.fmt.outcome }}\`\n
-            - Initialization: \`${{ steps.init.outcome }}\`\n
-            - Validation: \`${{ steps.validate.outcome }}\`\n
-            - Plan: \`${{ steps.plan.outcome }}\`\n\n
+            const output = `- Format: \`${{ steps.fmt.outcome }}\`
+            - Initialization: \`${{ steps.init.outcome }}\`
+            - Validation: \`${{ steps.validate.outcome }}\`
+            - Plan: \`${{ steps.plan.outcome }}\`\n
             <details><summary>Show Plan</summary>
             \`\`\`\n
             ${process.env.PLAN}
