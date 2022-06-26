@@ -1,0 +1,33 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/test.yml"
+      - "apps/**"
+      - "packages/**"
+      - "*"
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache PNPM
+        uses: actions/cache@v3
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 6
+          run_install: true
+      - name: Test
+        run: pnpm test
+      - name: Upload Codecov report
+        uses: codecov/codecov-action@v2

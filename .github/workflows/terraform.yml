@@ -6,6 +6,10 @@ on:
     paths:
       - "infrastructure/**"
   pull_request:
+    branches:
+      - main
+    paths:
+      - "infrastructure/**"
 
 jobs:
   terraform:
