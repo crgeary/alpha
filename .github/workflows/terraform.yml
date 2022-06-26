@@ -6,10 +6,12 @@ on:
     paths:
       - "infrastructure/**"
   pull_request:
-    branches:
-      - main
     paths:
       - "infrastructure/**"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   terraform:

@@ -1,15 +1,16 @@
 name: CI
 
 on:
-  push:
-    branches:
-      - main
+  pull_request:
     paths:
       - ".github/workflows/ci.yml"
       - "apps/**"
       - "packages/**"
       - "*"
-  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   checks:
