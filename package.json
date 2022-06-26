@@ -6,6 +6,7 @@
         "dev": "pnpm --recursive run dev --filter=api --filter=client",
         "format": "prettier --write .",
         "lint": "pnpm --recursive run lint",
+        "test": "pnpm --recursive run test",
         "prepare": "husky install"
     },
     "devDependencies": {
