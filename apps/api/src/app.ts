@@ -1,4 +1,5 @@
 import "reflect-metadata";
+import "dotenv/config";
 import express from "express";
 import { useExpressServer, useContainer } from "routing-controllers";
 import { Container } from "typedi";
