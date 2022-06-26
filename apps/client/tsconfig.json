@@ -5,7 +5,7 @@
         "lib": ["dom", "dom.iterable", "esnext"],
         "module": "esnext",
         "jsx": "preserve",
-        "types": ["reflect-metadata"],
+        "types": ["reflect-metadata", "jest", "node"],
         "allowJs": true
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
