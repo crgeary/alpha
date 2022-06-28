@@ -5,7 +5,14 @@ const port = process.env.PORT || 4000;
 
 validateEnv();
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
     // eslint-disable-next-line no-console
     console.log(`🚀 Listening on port ${port}`);
 });
+
+const shutdown = () => {
+    server.close();
+};
+
+process.once("SIGINT", shutdown);
+process.once("SIGTERM", shutdown);

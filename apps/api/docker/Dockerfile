@@ -1,4 +1,4 @@
-FROM node:18-alpine AS pnpm
+FROM node:18.4.0-alpine AS pnpm
 
 RUN apk --no-cache add curl
 RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
