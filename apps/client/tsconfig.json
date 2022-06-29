@@ -1,6 +1,7 @@
 {
     "extends": "../../tsconfig.json",
     "compilerOptions": {
+        "noEmit": true,
         "target": "es5",
         "lib": ["dom", "dom.iterable", "esnext"],
         "module": "esnext",
