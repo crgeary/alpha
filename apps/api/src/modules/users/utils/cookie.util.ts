@@ -1,4 +1,4 @@
-import { isEnv } from "@app/common";
+import { isEnv } from "@alpha/common";
 import { CookieOptions } from "express";
 
 export const getAuthCookieOptions = (options: CookieOptions) => {

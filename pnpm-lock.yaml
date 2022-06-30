@@ -16,7 +16,7 @@ importers:
 
   apps/api:
     specifiers:
-      '@app/common': 0.0.0
+      '@alpha/common': 0.0.0
       '@prisma/client': ^3.15.1
       '@types/bcrypt': ^5.0.0
       '@types/body-parser': ^1.19.2
@@ -60,7 +60,7 @@ importers:
       typescript: 4.7.3
       uuid: ^8.3.2
     dependencies:
-      '@app/common': link:../../packages/common
+      '@alpha/common': link:../../packages/common
       '@prisma/client': 3.15.1_prisma@3.15.1
       add: 2.0.6
       bcrypt: 5.0.1

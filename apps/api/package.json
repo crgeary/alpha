@@ -1,5 +1,5 @@
 {
-    "name": "@app/api",
+    "name": "@alpha/api",
     "version": "0.0.0",
     "private": true,
     "scripts": {
@@ -15,7 +15,7 @@
         "db:migrate": "prisma migrate deploy --schema=./src/db/schema.prisma"
     },
     "dependencies": {
-        "@app/common": "0.0.0",
+        "@alpha/common": "0.0.0",
         "@prisma/client": "^3.15.1",
         "add": "^2.0.6",
         "bcrypt": "^5.0.1",

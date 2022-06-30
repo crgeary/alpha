@@ -1,8 +1,8 @@
+import { UnauthorizedException } from "@alpha/common";
 import { Service } from "typedi";
 import { prisma } from "../../../db";
-import { UnauthorizedException } from "@app/common";
-import { comparePassword } from "../utils/password.util";
 import { UserDto } from "../dtos/user.dto";
+import { comparePassword } from "../utils/password.util";
 import { JwtService } from "./jwt.service";
 
 @Service()

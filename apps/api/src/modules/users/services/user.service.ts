@@ -1,11 +1,11 @@
-import { NotFoundException } from "@app/common";
+import { NotFoundException } from "@alpha/common";
+import { isUndefined } from "lodash";
 import { Service } from "typedi";
 import { prisma } from "../../../db";
 import { CreateUserDto } from "../dtos/create-user.dto";
 import { UpdateUserDto } from "../dtos/update-user.dto";
 import { UserDto } from "../dtos/user.dto";
 import { hashPassword } from "../utils/password.util";
-import { isUndefined } from "lodash";
 
 @Service()
 export class UserService {

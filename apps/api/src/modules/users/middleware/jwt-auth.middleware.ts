@@ -1,4 +1,4 @@
-import { UnauthorizedException } from "@app/common";
+import { UnauthorizedException } from "@alpha/common";
 import { NextFunction, Request, Response } from "express";
 import ms from "ms";
 import { ExpressMiddlewareInterface } from "routing-controllers";
