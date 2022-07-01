@@ -3,8 +3,8 @@
     "version": "0.0.0",
     "private": true,
     "scripts": {
-        "build": "tsc --project tsconfig.json",
-        "check-ts": "tsc --noEmit --project tsconfig.json",
+        "build": "tsc --build",
+        "check-ts": "tsc --noEmit",
         "dev": "nodemon --exec 'ts-node' src/server.ts",
         "lint": "eslint",
         "postinstall": "pnpm db:schema:generate",

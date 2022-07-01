@@ -1,15 +1,21 @@
 {
     "extends": "../../tsconfig.json",
+    "ts-node": {
+        "files": true
+    },
     "compilerOptions": {
+        "baseUrl": ".",
         "module": "CommonJS",
         "target": "ES2022",
         "lib": ["ES2022"],
         "types": ["reflect-metadata", "jest", "node"],
-        "outDir": "dist"
+        "rootDir": "./src",
+        "outDir": "./dist",
+        "paths": {
+            "@alpha/common": ["../../packages/common/src"],
+            "@alpha/common/*": ["../../packages/common/src/*"]
+        }
     },
-    "include": ["env.d.ts", "**/*.ts", "**/*.tsx"],
-    "exclude": ["node_modules"],
-    "ts-node": {
-        "files": true
-    }
+    "include": ["./src", "env.d.ts"],
+    "references": [{ "path": "../../packages/common" }]
 }
