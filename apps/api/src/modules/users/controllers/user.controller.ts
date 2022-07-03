@@ -1,4 +1,4 @@
-import { HttpStatus } from "@app/common";
+import { HttpStatus } from "@alpha/common";
 import {
     Body,
     Delete,

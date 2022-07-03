@@ -1,16 +1,17 @@
 {
-    "name": "@app/client",
+    "name": "@alpha/client",
     "version": "0.0.0",
     "private": true,
     "scripts": {
         "build": "next build",
-        "check-ts": "tsc --noEmit --project tsconfig.json",
+        "check-ts": "tsc --noEmit",
         "dev": "next dev",
         "lint": "next lint",
         "test": "jest",
         "test:watch": "jest --watch"
     },
     "dependencies": {
+        "@alpha/common": "0.0.0",
         "@faker-js/faker": "^7.2.0",
         "@fontsource/inter": "^4.5.11",
         "axios": "^0.27.2",

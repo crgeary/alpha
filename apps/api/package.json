@@ -1,10 +1,10 @@
 {
-    "name": "@app/api",
+    "name": "@alpha/api",
     "version": "0.0.0",
     "private": true,
     "scripts": {
-        "build": "tsc --project tsconfig.json",
-        "check-ts": "tsc --noEmit --project tsconfig.json",
+        "build": "tsc --project tsconfig.production.json",
+        "check-ts": "tsc --noEmit",
         "dev": "nodemon --exec 'ts-node' src/server.ts",
         "lint": "eslint",
         "postinstall": "pnpm db:schema:generate",
@@ -15,7 +15,7 @@
         "db:migrate": "prisma migrate deploy --schema=./src/db/schema.prisma"
     },
     "dependencies": {
-        "@app/common": "0.0.0",
+        "@alpha/common": "0.0.0",
         "@prisma/client": "^3.15.1",
         "add": "^2.0.6",
         "bcrypt": "^5.0.1",

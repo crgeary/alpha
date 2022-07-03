@@ -1,13 +1,13 @@
-import "reflect-metadata";
+import { HttpStatus } from "@alpha/common";
+import cookieParser from "cookie-parser";
 import "dotenv/config";
 import express from "express";
-import { useExpressServer, useContainer } from "routing-controllers";
-import { Container } from "typedi";
-import { userModule } from "./modules/users";
-import { ErrorHandler } from "./common/middleware/error-handler.middleware";
-import { HttpStatus } from "@app/common";
-import cookieParser from "cookie-parser";
 import helmet from "helmet";
+import "reflect-metadata";
+import { useContainer, useExpressServer } from "routing-controllers";
+import { Container } from "typedi";
+import { ErrorHandler } from "./common/middleware/error-handler.middleware";
+import { userModule } from "./modules/users";
 
 const app = express();
 

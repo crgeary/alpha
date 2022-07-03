@@ -1,7 +1,11 @@
 node_modules
 package-lock.json
 
+dist
+
 .env
+
+.turbo
 
 *.tsbuildinfo
 .pnpm-debug.log*

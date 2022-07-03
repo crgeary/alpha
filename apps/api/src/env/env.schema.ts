@@ -1,4 +1,4 @@
-import { NodeEnv } from "@app/common";
+import { NodeEnv } from "@alpha/common";
 import { IsIn, IsString, MinLength } from "class-validator";
 
 export class EnvSchema {

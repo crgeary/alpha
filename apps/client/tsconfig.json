@@ -1,6 +1,8 @@
 {
     "extends": "../../tsconfig.json",
     "compilerOptions": {
+        "baseUrl": ".",
+        "noEmit": true,
         "target": "es5",
         "lib": ["dom", "dom.iterable", "esnext"],
         "module": "esnext",
@@ -8,6 +10,5 @@
         "types": ["reflect-metadata", "jest", "node"],
         "allowJs": true
     },
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-    "exclude": ["node_modules"]
+    "include": ["./src", "next-env.d.ts"]
 }

@@ -1,7 +1,7 @@
-import { HttpException, HttpStatus, isEnv, UnprocessableEntityException } from "@app/common";
+import { HttpException, HttpStatus, isEnv, UnprocessableEntityException } from "@alpha/common";
 import { ValidationError } from "class-validator";
 import { NextFunction, Request, Response } from "express";
-import { Middleware, ExpressErrorMiddlewareInterface, BadRequestError } from "routing-controllers";
+import { BadRequestError, ExpressErrorMiddlewareInterface, Middleware } from "routing-controllers";
 import { Service } from "typedi";
 
 const isValidationError = (
