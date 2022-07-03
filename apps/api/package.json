@@ -3,7 +3,7 @@
     "version": "0.0.0",
     "private": true,
     "scripts": {
-        "build": "tsc --build",
+        "build": "tsc --project tsconfig.production.json",
         "check-ts": "tsc --noEmit",
         "dev": "nodemon --exec 'ts-node' src/server.ts",
         "lint": "eslint",

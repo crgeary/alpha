@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "build": "next build",
-        "check-ts": "tsc --noEmit --project tsconfig.json",
+        "check-ts": "tsc --noEmit",
         "dev": "next dev",
         "lint": "next lint",
         "test": "jest",

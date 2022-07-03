@@ -8,12 +8,7 @@
         "module": "esnext",
         "jsx": "preserve",
         "types": ["reflect-metadata", "jest", "node"],
-        "allowJs": true,
-        "paths": {
-            "@alpha/common": ["../../packages/common/src"],
-            "@alpha/common/*": ["../../packages/common/src/*"]
-        }
+        "allowJs": true
     },
-    "include": ["./src", "next-env.d.ts"],
-    "references": [{ "path": "../../packages/common" }]
+    "include": ["./src", "next-env.d.ts"]
 }
