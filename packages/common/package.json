@@ -5,6 +5,7 @@
     "main": "dist/index.js",
     "scripts": {
         "build": "tsc --project tsconfig.production.json",
-        "check-ts": "tsc --noEmit"
+        "check-ts": "tsc --noEmit",
+        "clean": "rm -r dist"
     }
 }

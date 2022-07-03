@@ -10,6 +10,9 @@
         "check-ts": {
             "outputs": []
         },
+        "clean": {
+            "outputs": ["dist/**", ".next/**"]
+        },
         "dev": {
             "cache": false
         },
