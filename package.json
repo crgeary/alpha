@@ -4,6 +4,7 @@
         "build": "turbo run build",
         "check-format": "prettier --check .",
         "check-ts": "turbo run check-ts --parallel",
+        "clean": "turbo run clean --parallel",
         "dev": "turbo run dev --parallel",
         "format": "prettier --write .",
         "lint": "turbo run lint --parallel",
