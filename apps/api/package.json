@@ -8,7 +8,6 @@
         "clean": "rm -r dist",
         "dev": "nodemon --exec 'ts-node' src/server.ts",
         "lint": "eslint",
-        "postinstall": "pnpm db:schema:generate",
         "test": "jest",
         "test:watch": "jest --watch",
         "db:schema:generate": "prisma generate --schema=./src/db/schema.prisma",
