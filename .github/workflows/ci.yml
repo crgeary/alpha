@@ -28,6 +28,7 @@ jobs:
         with:
           version: 6
           run_install: true
+      - run: pnpm --filter=@alpha/api run db:schema:generate
       - run: pnpm check-format
       - run: pnpm check-ts
       - run: pnpm lint
