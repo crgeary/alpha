@@ -24,6 +24,7 @@ jobs:
         with:
           version: 6
           run_install: true
+      - run: pnpm --filter=@alpha/api run db:schema:generate
       - name: Test
         run: pnpm test
       - name: Upload Codecov report

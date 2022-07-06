@@ -177,7 +177,12 @@ importers:
       typescript: 4.7.3
 
   packages/common:
-    specifiers: {}
+    specifiers:
+      '@types/node': 17.0.40
+      typescript: 4.7.3
+    devDependencies:
+      '@types/node': 17.0.40
+      typescript: 4.7.3
 
 packages:
 
