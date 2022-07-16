@@ -6,7 +6,7 @@
         "build": "tsc --project tsconfig.production.json",
         "check-ts": "tsc --noEmit",
         "clean": "rm -r dist",
-        "dev": "nodemon --exec 'ts-node' src/server.ts",
+        "dev": "nodemon",
         "lint": "eslint",
         "test": "jest",
         "test:watch": "jest --watch",
