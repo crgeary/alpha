@@ -1,10 +1,10 @@
 # Todo:
-# 
+#
 # 1. Use `pnpm fetch` and `--offline`
 # 2. Maybe use Turborepo cache
 # 3. Find better soution for `prisma generate`
 
-FROM node:18.4.0-alpine AS pnpm
+FROM node:18.6.0-alpine AS pnpm
 
 RUN apk --no-cache add curl dumb-init
 RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
