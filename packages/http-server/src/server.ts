@@ -33,7 +33,7 @@ export function useExpressServer(app: Express, options: UseExpressServerOptions)
             const handler = (req: Request, res: Response, next: NextFunction) => {
                 const paramMetadata = getParamMetadata(controller, method);
 
-                const args = paramMetadata.reduce((acc, curr, index) => {
+                const args = paramMetadata.reduce((acc, curr) => {
                     acc[curr.index] = getParam(req, res, next, curr.paramType, curr.name);
                     return acc;
                 }, [] as unknown[]);

@@ -1,8 +1,9 @@
 import { PARAM_METADATA } from "../constants";
 import { ParamType } from "../enums/param-type.enum";
+import { Param } from "../types/param.type";
 import { getParamMetadata } from "../utils/get-param-metadata.util";
 
-function appendMetadata(target: object, value: any, key: string) {
+function appendMetadata(target: object, value: Param, key: string) {
     const current = getParamMetadata(target, String(key));
     current.push(value);
     Reflect.defineMetadata(PARAM_METADATA, current, target, key);

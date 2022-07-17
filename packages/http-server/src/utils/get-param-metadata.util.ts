@@ -1,11 +1,5 @@
 import { PARAM_METADATA } from "../constants";
-import { ParamType } from "../enums/param-type.enum";
-
-type Param = {
-    paramType: ParamType;
-    index: number;
-    name: string | undefined;
-};
+import { Param } from "../types/param.type";
 
 type ParamMetadata = Param[];
 
