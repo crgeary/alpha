@@ -1,6 +1,7 @@
-import { Express, Router } from "express";
+import { Express, NextFunction, Request, Response, Router } from "express";
 import path from "path";
 import { Class } from "type-fest";
+import { InvalidMetadataLabel } from "./exceptions/invalid-metadata-label.exception";
 import { getControllerMetadata } from "./utils/get-controller-metadata.util";
 import { getMethodMetadata } from "./utils/get-method-metadata.util";
 import { getMethods } from "./utils/get-methods.util";
@@ -17,8 +18,9 @@ export function useExpressServer(app: Express, options: UseExpressServerOptions)
 
     options.controllers.forEach((controller) => {
         if (!isController(controller)) {
-            console.error("Skipping, not a controller");
-            return;
+            throw new InvalidMetadataLabel(
+                `Controller '${controller.name}' is not decorated with @Controller()`,
+            );
         }
 
         const methods = getMethods(controller.prototype);
@@ -27,7 +29,8 @@ export function useExpressServer(app: Express, options: UseExpressServerOptions)
         methods.forEach((method) => {
             const methodMetadata = getMethodMetadata(controller.prototype[method]);
             const routerPath = path.join(controllerMetadata.path, methodMetadata.path);
-            router[methodMetadata.method](routerPath, (req, res, next) => {
+
+            const handler = (req: Request, res: Response, next: NextFunction) => {
                 const paramMetadata = getParamMetadata(controller, method);
 
                 const args = paramMetadata.reduce((acc, curr, index) => {
@@ -36,7 +39,9 @@ export function useExpressServer(app: Express, options: UseExpressServerOptions)
                 }, [] as unknown[]);
 
                 return controller.prototype[method].apply(controller, args);
-            });
+            };
+
+            router[methodMetadata.method](routerPath, handler);
         });
     });
 
