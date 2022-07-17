@@ -19,6 +19,8 @@ export function getParam(
             return name ? req.params[name] : req.params;
         case ParamType.Query:
             return name ? req.query[name] : req.query;
+        case ParamType.Body:
+            return name ? req.body[name] : req.body;
         case ParamType.Headers:
             return name ? req.headers[name] : req.headers;
         case ParamType.Cookies:
