@@ -43,4 +43,13 @@ app.listen(4000, () => {
 @Head()
 @Options()
 @All()
+
+// Params
+@Req()
+@Res()
+@Params()
+@Query()
+@Body()
+@Headers()
+@Cookies()
 ```
