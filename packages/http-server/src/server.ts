@@ -11,6 +11,7 @@ import { isController } from "./utils/is-controller.util";
 
 type UseExpressServerOptions = {
     controllers: Class<unknown>[];
+    path?: string;
 };
 
 export function useExpressServer(app: Express, options: UseExpressServerOptions) {
@@ -45,5 +46,5 @@ export function useExpressServer(app: Express, options: UseExpressServerOptions)
         });
     });
 
-    app.use("/", router);
+    app.use(options.path || "/", router);
 }

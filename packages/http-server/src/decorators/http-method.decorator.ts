@@ -2,7 +2,7 @@ import { HTTP_METHOD_METADATA, PATH_METADATA } from "../constants";
 import { HttpMethod } from "../enums";
 
 function httpMethodFactory(method: HttpMethod) {
-    return (path: string): MethodDecorator => {
+    return (path?: string): MethodDecorator => {
         return (target, key, descriptor: TypedPropertyDescriptor<any>) => {
             Reflect.defineMetadata(HTTP_METHOD_METADATA, method, descriptor.value);
             Reflect.defineMetadata(PATH_METADATA, path, descriptor.value);
