@@ -1,4 +1,5 @@
 import { Express, NextFunction, Request, Response, Router } from "express";
+import { Container } from "inversify";
 import path from "path";
 import { Class } from "type-fest";
 import { InvalidMetadataLabel } from "./exceptions/invalid-metadata-label.exception";
@@ -10,6 +11,7 @@ import { getParam } from "./utils/get-param.util";
 import { isController } from "./utils/is-controller.util";
 
 type UseExpressServerOptions = {
+    container: Container;
     controllers: Class<unknown>[];
     path?: string;
 };
@@ -31,7 +33,7 @@ export function useExpressServer(app: Express, options: UseExpressServerOptions)
             const methodMetadata = getMethodMetadata(controller.prototype[method]);
             const routerPath = path.join(controllerMetadata.path, methodMetadata.path);
 
-            const handler = (req: Request, res: Response, next: NextFunction) => {
+            const handler = async (req: Request, res: Response, next: NextFunction) => {
                 const paramMetadata = getParamMetadata(controller, method);
 
                 const args = paramMetadata.reduce((acc, curr) => {
@@ -39,7 +41,12 @@ export function useExpressServer(app: Express, options: UseExpressServerOptions)
                     return acc;
                 }, [] as unknown[]);
 
-                return controller.prototype[method].apply(controller, args);
+                try {
+                    const response = await options.container.get(controller)[method](...args);
+                    return res.status(methodMetadata.statusCode).json(response);
+                } catch (err) {
+                    next(err);
+                }
             };
 
             router[methodMetadata.method](routerPath, handler);
