@@ -1,14 +1,12 @@
+import { Body, Controller, Post, Res } from "@alpha/http-server";
 import { Response } from "express";
 import ms from "ms";
-import { Body, JsonController, Post, Res } from "routing-controllers";
-import { Service } from "typedi";
 import { JWT_ACCESS_TOKEN_LIFETIME, JWT_REFRESH_TOKEN_LIFETIME } from "../constants";
 import { LoginDto } from "../dtos/login.dto";
 import { AuthService } from "../services/auth.service";
 import { getAuthCookieOptions } from "../utils/cookie.util";
 
-@Service()
-@JsonController("/auth")
+@Controller("/auth")
 export class AuthController {
     constructor(private readonly authService: AuthService) {}
 

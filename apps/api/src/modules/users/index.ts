@@ -1,9 +1,10 @@
 import { Module } from "../../common/types";
-import { AuthController } from "./controllers/auth.controller";
 import { UserController } from "./controllers/user.controller";
 
+// Todo: Re-implement AuthController
+
 const userModule: Module = {
-    controllers: [UserController, AuthController],
+    controllers: [UserController],
 };
 
 export { userModule };

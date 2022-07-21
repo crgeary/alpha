@@ -1,14 +1,14 @@
-import ms from "ms";
+import { RefreshTokenStatus } from "@prisma/client";
+import { injectable } from "inversify";
 import jwt, { JsonWebTokenError, TokenExpiredError } from "jsonwebtoken";
-import { Service } from "typedi";
+import { isNil, isObject } from "lodash";
+import ms from "ms";
 import { v4 as uuidv4 } from "uuid";
 import { prisma } from "../../../db";
-import { RefreshTokenStatus } from "@prisma/client";
-import { isNil, isObject } from "lodash";
-import { AccessTokenPayload, RefreshTokenPayload } from "../types/jwt.type";
 import { JWT_ACCESS_TOKEN_LIFETIME, JWT_REFRESH_TOKEN_LIFETIME } from "../constants";
+import { AccessTokenPayload, RefreshTokenPayload } from "../types/jwt.type";
 
-@Service()
+@injectable()
 export class JwtService {
     createAccessToken = (userId: string) => {
         const iat = Math.floor(Date.now() / 1000);

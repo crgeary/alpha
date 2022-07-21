@@ -1,11 +1,11 @@
 import { UnauthorizedException } from "@alpha/common";
-import { Service } from "typedi";
+import { injectable } from "inversify";
 import { prisma } from "../../../db";
 import { UserDto } from "../dtos/user.dto";
 import { comparePassword } from "../utils/password.util";
 import { JwtService } from "./jwt.service";
 
-@Service()
+@injectable()
 export class AuthService {
     constructor(private readonly jwtService: JwtService) {}
 

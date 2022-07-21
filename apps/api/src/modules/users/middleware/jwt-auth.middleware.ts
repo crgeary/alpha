@@ -1,14 +1,13 @@
 import { UnauthorizedException } from "@alpha/common";
+import { Middleware } from "@alpha/http-server";
 import { NextFunction, Request, Response } from "express";
 import ms from "ms";
-import { ExpressMiddlewareInterface } from "routing-controllers";
-import { Service } from "typedi";
 import { JWT_ACCESS_TOKEN_LIFETIME, JWT_REFRESH_TOKEN_LIFETIME } from "../constants";
 import { JwtService } from "../services/jwt.service";
 import { getAuthCookieOptions } from "../utils/cookie.util";
 
-@Service()
-export class JwtAuthMiddleware implements ExpressMiddlewareInterface {
+@Middleware()
+export class JwtAuthMiddleware {
     constructor(private readonly jwtService: JwtService) {}
 
     async use(req: Request, res: Response, next: NextFunction) {

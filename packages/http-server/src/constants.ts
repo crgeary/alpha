@@ -4,3 +4,4 @@ export const HTTP_CODE_METADATA = "http-code:metadata";
 export const PARAM_METADATA = "param:metadata";
 
 export const CONTROLLER_LABEL = "controller:label";
+export const MIDDLEWARE_LABEL = "middleware:label";

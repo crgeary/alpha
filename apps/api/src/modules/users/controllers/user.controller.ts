@@ -1,24 +1,10 @@
 import { HttpStatus } from "@alpha/common";
-import {
-    Body,
-    Delete,
-    Get,
-    HttpCode,
-    JsonController,
-    Param,
-    Patch,
-    Post,
-    UseBefore,
-} from "routing-controllers";
-import { Service } from "typedi";
+import { Body, Controller, Delete, Get, HttpCode, Params, Patch, Post } from "@alpha/http-server";
 import { CreateUserDto } from "../dtos/create-user.dto";
 import { UpdateUserDto } from "../dtos/update-user.dto";
-import { JwtAuthMiddleware } from "../middleware/jwt-auth.middleware";
 import { UserService } from "../services/user.service";
 
-@Service()
-@UseBefore(JwtAuthMiddleware)
-@JsonController("/users")
+@Controller("/users")
 export class UserController {
     constructor(private readonly userService: UserService) {}
 
@@ -38,14 +24,14 @@ export class UserController {
     }
 
     @Get("/:id")
-    async findOne(@Param("id") id: string) {
+    async findOne(@Params("id") id: string) {
         return {
             data: await this.userService.findById(id),
         };
     }
 
     @Patch("/:id")
-    async update(@Param("id") id: string, @Body() updateUserDto: UpdateUserDto) {
+    async update(@Params("id") id: string, @Body() updateUserDto: UpdateUserDto) {
         return {
             data: await this.userService.updateById(id, updateUserDto),
         };
@@ -53,7 +39,7 @@ export class UserController {
 
     @Delete("/:id")
     @HttpCode(HttpStatus.NO_CONTENT)
-    async delete(@Param("id") id: string) {
+    async delete(@Params("id") id: string) {
         return this.userService.deleteById(id);
     }
 }
