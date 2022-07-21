@@ -3,8 +3,8 @@ import cookieParser from "cookie-parser";
 import "dotenv/config";
 import express from "express";
 import helmet from "helmet";
-import { Container } from "inversify";
 import "reflect-metadata";
+import { container } from "./common/container";
 import { userModule } from "./modules/users";
 
 const app = express();
@@ -12,10 +12,8 @@ const app = express();
 app.use(helmet());
 app.use(cookieParser());
 
-app.get("/", (req, res) => res.json({ message: "Hello, World!" }));
-
 useExpressServer(app, {
-    container: new Container({ autoBindInjectable: true }),
+    container,
     controllers: [...userModule.controllers],
 });
 
