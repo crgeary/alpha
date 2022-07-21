@@ -1,4 +1,5 @@
 import { Express, NextFunction, Request, Response, Router } from "express";
+import { ServerResponse } from "http";
 import { Container } from "inversify";
 import path from "path";
 import { Class } from "type-fest";
@@ -43,7 +44,10 @@ export function useExpressServer(app: Express, options: UseExpressServerOptions)
 
                 try {
                     const response = await options.container.get(controller)[method](...args);
-                    return res.status(methodMetadata.statusCode).json(response);
+                    if (!(response instanceof ServerResponse)) {
+                        res.status(methodMetadata.statusCode).json(response);
+                    }
+                    return res;
                 } catch (err) {
                     next(err);
                 }
