@@ -10,13 +10,13 @@ const app = express();
 @Controller()
 class ExampleController {
     @Get("/users/:userId")
-    example(@Res() res: Response, @Params('userId') userId: string) {
-        return res.json({
+    example(@Params('userId') userId: string) {
+        return {
             user: {
                 id: userId,
                 ...
             }
-        });
+        };
     }
 }
 
@@ -34,6 +34,7 @@ app.listen(4000, () => {
 | Decorator       | Type      | Description                   |
 | :-------------- | :-------- | :---------------------------- |
 | `@Controller()` | Class     | Marks a class as a Controller |
+| `@Middleware()` | Class     | Marks a class as a Middleware |
 | `@Get()`        | Method    | Use HTTP GET method           |
 | `@Post()`       | Method    | Use HTTP POST method          |
 | `@Put()`        | Method    | Use HTTP POST method          |
