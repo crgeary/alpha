@@ -3,7 +3,7 @@ import { Middleware } from "@alpha/http-server";
 import { NextFunction, Request, Response } from "express";
 
 @Middleware()
-export class ErrorHandler {
+export class ErrorHandlerMiddleware {
     error(err: Error, _: Request, res: Response, next: NextFunction) {
         const status =
             err instanceof HttpException ? err.statusCode : HttpStatus.INTERNAL_SERVER_ERROR;

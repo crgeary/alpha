@@ -14,7 +14,7 @@ import { isController } from "./utils/is-controller.util";
 type UseExpressServerOptions = {
     container: Container;
     controllers: Class<unknown>[];
-
+    errorHandlerMiddleware: Class<unknown>;
     path?: string;
 };
 
@@ -59,4 +59,9 @@ export function useExpressServer(app: Express, options: UseExpressServerOptions)
     });
 
     app.use(options.path || "/", router);
+
+    app.use(async (err: Error, req: Request, res: Response, next: NextFunction) => {
+        const middleware = options.container.get(options.errorHandlerMiddleware);
+        return middleware.error(err, req, res, next);
+    });
 }
