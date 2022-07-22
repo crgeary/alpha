@@ -1,5 +1,4 @@
 import { useExpressServer } from "@alpha/http-server";
-import cookieParser from "cookie-parser";
 import "dotenv/config";
 import express from "express";
 import helmet from "helmet";
@@ -11,7 +10,6 @@ import { userModule } from "./modules/users";
 const app = express();
 
 app.use(helmet());
-app.use(cookieParser());
 
 useExpressServer(app, {
     container,
