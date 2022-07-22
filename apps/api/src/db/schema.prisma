@@ -1,42 +1,23 @@
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
-
-// --
-
-enum RefreshTokenStatus {
-  ACTIVE
-  REVOKED
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
 }
 
 // --
 
 model User {
-  id            String         @id @default(uuid()) @db.Uuid
-  createdAt     DateTime       @default(now()) @map("created_at")
-  updatedAt     DateTime       @updatedAt @map("updated_at")
-  deletedAt     DateTime?      @map("deleted_at")
-  email         String         @unique
-  password      String
-  name          String
-  image         String?
-  refreshTokens RefreshToken[]
+    id        String    @id @default(uuid()) @db.Uuid
+    createdAt DateTime  @default(now()) @map("created_at")
+    updatedAt DateTime  @updatedAt @map("updated_at")
+    deletedAt DateTime? @map("deleted_at")
+    email     String    @unique
+    password  String
+    name      String
+    image     String?
 
-  @@map(name: "users")
-}
-
-model RefreshToken {
-  jwtId     String             @map("jwt_id")
-  userId    String             @map("user_id") @db.Uuid
-  expiresAt DateTime           @map("expires_at")
-  status    RefreshTokenStatus @default(ACTIVE)
-  user      User               @relation(fields: [userId], references: [id])
-
-  @@unique([jwtId, userId])
-  @@map(name: "refresh_tokens")
+    @@map(name: "users")
 }

@@ -14,6 +14,7 @@ import { isController } from "./utils/is-controller.util";
 type UseExpressServerOptions = {
     container: Container;
     controllers: Class<unknown>[];
+
     path?: string;
 };
 
