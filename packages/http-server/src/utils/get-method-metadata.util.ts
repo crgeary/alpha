@@ -1,4 +1,4 @@
-import { HttpStatus } from "../../../common/src";
+import { HttpStatus } from "@alpha/common";
 import { HTTP_CODE_METADATA, HTTP_METHOD_METADATA, PATH_METADATA } from "../constants";
 import { HttpMethodList } from "../enums";
 

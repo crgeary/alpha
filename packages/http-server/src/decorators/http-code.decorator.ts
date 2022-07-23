@@ -1,4 +1,4 @@
-import { HttpStatus } from "../../../common/src";
+import { HttpStatus } from "@alpha/common";
 import { HTTP_CODE_METADATA } from "../constants";
 
 export function HttpCode(code: HttpStatus): MethodDecorator {
