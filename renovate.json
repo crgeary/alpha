@@ -1,0 +1,15 @@
+{
+    "extends": ["config:base"],
+    "commitBodyTable": true,
+    "schedule": "every 2 weeks",
+    "packageRules": [
+        {
+            "matchUpdateTypes": ["minor", "patch", "pin"],
+            "automerge": true
+        },
+        {
+            "matchPackageNames": ["chalk"],
+            "allowedVersions": "< 5"
+        }
+    ]
+}
