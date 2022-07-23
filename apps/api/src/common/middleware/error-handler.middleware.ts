@@ -1,21 +1,10 @@
 import { HttpException, HttpStatus, isEnv, UnprocessableEntityException } from "@alpha/common";
-import { ValidationError } from "class-validator";
+import { Middleware } from "@alpha/http-server";
 import { NextFunction, Request, Response } from "express";
-import { BadRequestError, ExpressErrorMiddlewareInterface, Middleware } from "routing-controllers";
-import { Service } from "typedi";
 
-const isValidationError = (
-    err: unknown,
-): err is BadRequestError & { errors: ValidationError[] } => {
-    return err instanceof BadRequestError && "errors" in err;
-};
-
-@Service()
-@Middleware({ type: "after" })
-export class ErrorHandler implements ExpressErrorMiddlewareInterface {
-    error(error: Error, _: Request, res: Response, next: NextFunction) {
-        const err = this.transformError(error);
-
+@Middleware()
+export class ErrorHandlerMiddleware {
+    error(err: Error, _: Request, res: Response, next: NextFunction) {
         const status =
             err instanceof HttpException ? err.statusCode : HttpStatus.INTERNAL_SERVER_ERROR;
 
@@ -33,18 +22,6 @@ export class ErrorHandler implements ExpressErrorMiddlewareInterface {
         });
 
         next();
-    }
-
-    transformError(err: Error) {
-        if (isValidationError(err)) {
-            return new UnprocessableEntityException("Validation error", {
-                errors: err.errors.map((err) => ({
-                    name: err.property,
-                    messages: err.constraints ? Object.values(err.constraints) : [],
-                })),
-            });
-        }
-        return err;
     }
 
     parseStackTrace(stack: string | undefined) {

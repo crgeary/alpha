@@ -1,0 +1,25 @@
+{
+    "name": "@alpha/http-server",
+    "version": "0.0.0",
+    "private": true,
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "tsc --project tsconfig.production.json",
+        "check-ts": "tsc --noEmit",
+        "clean": "rm -r dist"
+    },
+    "devDependencies": {
+        "@types/node": "17.0.40",
+        "express": "^4.18.1",
+        "inversify": "^6.0.1",
+        "type-fest": "^2.13.0",
+        "typescript": "4.7.3"
+    },
+    "dependencies": {
+        "@alpha/common": "workspace:0.0.0",
+        "reflect-metadata": "^0.1.13"
+    },
+    "peerDependencies": {
+        "express": ">=4.18.1"
+    }
+}

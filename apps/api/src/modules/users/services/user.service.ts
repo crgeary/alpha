@@ -1,13 +1,13 @@
 import { NotFoundException } from "@alpha/common";
+import { injectable } from "inversify";
 import { isUndefined } from "lodash";
-import { Service } from "typedi";
 import { prisma } from "../../../db";
 import { CreateUserDto } from "../dtos/create-user.dto";
 import { UpdateUserDto } from "../dtos/update-user.dto";
 import { UserDto } from "../dtos/user.dto";
 import { hashPassword } from "../utils/password.util";
 
-@Service()
+@injectable()
 export class UserService {
     async findById(id: string): Promise<UserDto> {
         const user = await prisma.user.findUnique({
