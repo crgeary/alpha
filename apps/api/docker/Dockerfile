@@ -28,6 +28,7 @@ COPY apps/api/package.json ./apps/api/package.json
 COPY apps/api/src/db/schema.prisma ./apps/api/src/db/schema.prisma
 
 COPY packages/common/package.json ./packages/common/package.json
+COPY packages/http-server/package.json ./packages/http-server/package.json
 
 RUN pnpm install --frozen-lockfile
 
@@ -81,6 +82,9 @@ COPY --chown=node:node --from=builder /app/apps/api/dist ./apps/api/dist
 
 COPY --chown=node:node --from=builder /app/packages/common/package.json ./packages/common/package.json
 COPY --chown=node:node --from=builder /app/packages/common/dist ./packages/common/dist
+
+COPY --chown=node:node --from=builder /app/packages/http-server/package.json ./packages/http-server/package.json
+COPY --chown=node:node --from=builder /app/packages/http-server/dist ./packages/http-server/dist
 
 RUN pnpm install --filter=@alpha/api --frozen-lockfile --prod --no-optional
 
