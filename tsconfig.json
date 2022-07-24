@@ -13,8 +13,8 @@
         "moduleResolution": "node",
         "incremental": true,
         "paths": {
-            "@alpha/common": [".packages/common/src"],
-            "@alpha/http-server": [".packages/http-server/src"]
+            "@alpha/common": ["./packages/common/src"],
+            "@alpha/http-server": ["./packages/http-server/src"]
         }
     },
     "exclude": ["node_modules"]
