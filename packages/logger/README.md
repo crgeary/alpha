@@ -12,9 +12,19 @@ const { logger } = createLogger({
 });
 
 // Start logging.
-logger.debug("Lorem ipsum dolor", { user: 123 });
-logger.info("Lorem ipsum dolor sit amet");
-logger.warn("Lorem ipsum dolor");
-logger.error("Lorem ipsum dolor sit amet");
-logger.fatal("Lorem ipsum dolor", { user: 123 });
+logger.debug("Lorem ipsum dolor");
+logger.info("Lorem ipsum dolor", { a: 1, b: 2, c: 3 });
+logger.warn({ a: 1, b: 2, c: 3 });
+logger.error(new Error("Sed ut perspiciatis"));
+logger.fatal(new Error("Sed ut perspiciatis"), { a: 1, b: 2, c: 3 });
 ```
+
+### Levels
+
+Supports the following log levels:
+
+-   debug
+-   info
+-   warn
+-   error
+-   fatal
