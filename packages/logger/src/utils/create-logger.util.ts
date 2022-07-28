@@ -1,6 +1,6 @@
-import pino from "pino";
 import { LoggerException } from "../exceptions/logger.exception";
 import { config } from "../pino.config";
+import { LoggerService } from "../services/logger.service";
 import { LoggerOptions } from "../types/logger-options.type";
 
 export function createLogger(options: LoggerOptions) {
@@ -10,7 +10,7 @@ export function createLogger(options: LoggerOptions) {
         );
     }
 
-    const logger = pino({
+    const logger = new LoggerService({
         ...config[options.environment],
         mixin() {
             return {

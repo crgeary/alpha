@@ -12,9 +12,9 @@ const { logger } = createLogger({
 });
 
 // Start logging.
-logger.debug({ user: 123 }, "Lorem ipsum dolor: %o");
+logger.debug("Lorem ipsum dolor", { user: 123 });
 logger.info("Lorem ipsum dolor sit amet");
 logger.warn("Lorem ipsum dolor");
-logger.error("Lorem ipsum dolor");
-logger.fatal({ user: 123 }: "Lorem ipsum dolor: %o");
+logger.error("Lorem ipsum dolor sit amet");
+logger.fatal("Lorem ipsum dolor", { user: 123 });
 ```
