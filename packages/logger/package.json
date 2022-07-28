@@ -1,0 +1,20 @@
+{
+    "name": "@alpha/logger",
+    "version": "0.0.0",
+    "private": true,
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "tsc --project tsconfig.production.json",
+        "check-ts": "tsc --noEmit",
+        "clean": "rm -r dist"
+    },
+    "devDependencies": {
+        "@types/node": "18.0.6",
+        "pino-pretty": "8.1.0",
+        "typescript": "4.7.4"
+    },
+    "dependencies": {
+        "@alpha/common": "workspace:0.0.0",
+        "pino": "8.3.1"
+    }
+}

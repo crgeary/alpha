@@ -13,6 +13,7 @@
     },
     "dependencies": {
         "@alpha/common": "0.0.0",
+        "@alpha/logger": "workspace:0.0.0",
         "@faker-js/faker": "7.2.0",
         "@fontsource/inter": "4.5.11",
         "axios": "0.27.2",
