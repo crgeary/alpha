@@ -7,6 +7,13 @@ export class LoggerService {
         this.pino = pino(options);
     }
 
+    trace(message: string | number, data?: object): void;
+    trace(err: Error): void;
+    trace(data: object): void;
+    trace(input: string | number | Error | object, data?: object) {
+        return this.pino.trace(...this.normalize(input, data));
+    }
+
     debug(message: string | number, data?: object): void;
     debug(err: Error): void;
     debug(data: object): void;

@@ -6013,7 +6013,7 @@ packages:
     dependencies:
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
-      jest: 28.1.1_@types+node@18.0.6
+      jest: 28.1.1_fae8b16e908384dfa3ee496033bcb5a2
       jest-util: 28.1.1
       json5: 2.2.1
       lodash.memoize: 4.1.2

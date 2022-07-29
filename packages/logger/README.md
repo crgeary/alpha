@@ -25,6 +25,7 @@ logger.fatal(new Error("Sed ut perspiciatis"), { a: 1, b: 2, c: 3 });
 
 Supports the following log severity levels:
 
+-   trace
 -   debug
 -   info
 -   warn
