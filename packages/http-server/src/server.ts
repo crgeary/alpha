@@ -10,6 +10,7 @@ import { getMethods } from "./utils/get-methods.util";
 import { getParamMetadata } from "./utils/get-param-metadata.util";
 import { getParam } from "./utils/get-param.util";
 import { isController } from "./utils/is-controller.util";
+import { isMiddleware } from "./utils/is-middleware.util";
 
 type UseExpressServerOptions = {
     container: Container;
@@ -62,6 +63,13 @@ export function useExpressServer(app: Express, options: UseExpressServerOptions)
 
     app.use(async (err: Error, req: Request, res: Response, next: NextFunction) => {
         const middleware = options.container.get(options.errorHandlerMiddleware);
+
+        if (!isMiddleware(middleware.constructor)) {
+            throw new InvalidMetadataLabel(
+                `Middleware '${middleware.name}' is not decorated with @Middleware()`,
+            );
+        }
+
         return middleware.error(err, req, res, next);
     });
 }
