@@ -6,10 +6,8 @@
     "scripts": {
         "build": "tsc --project tsconfig.production.json",
         "check-ts": "tsc --noEmit",
-        "clean": "rm -r dist"
-    },
-    "devDependencies": {
-        "@types/node": "18.0.6",
-        "typescript": "4.7.4"
+        "clean": "rm -rf dist",
+        "test": "jest --passWithNoTests",
+        "test:watch": "jest --passWithNoTests --watch"
     }
 }
