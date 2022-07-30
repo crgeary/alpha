@@ -1,8 +1,8 @@
 node_modules
 
 coverage
-out
 build
+out
 
 .next
 .vercel

@@ -1,7 +1,12 @@
 node_modules
 package-lock.json
 
-dist
+coverage
+build
+out
+
+.next
+.vercel
 
 .env
 

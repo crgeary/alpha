@@ -6,12 +6,12 @@
     "scripts": {
         "build": "tsc --project tsconfig.production.json",
         "check-ts": "tsc --noEmit",
-        "clean": "rm -r dist"
+        "clean": "rm -rf dist",
+        "test": "jest --passWithNoTests",
+        "test:watch": "jest --passWithNoTests --watch"
     },
     "devDependencies": {
-        "@types/node": "18.0.6",
-        "pino-pretty": "8.1.0",
-        "typescript": "4.7.4"
+        "pino-pretty": "8.1.0"
     },
     "dependencies": {
         "@alpha/common": "workspace:0.0.0",

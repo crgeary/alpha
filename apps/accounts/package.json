@@ -1,0 +1,27 @@
+{
+    "name": "@alpha/accounts",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "build": "tsc --project tsconfig.production.json",
+        "check-ts": "tsc --noEmit",
+        "clean": "rm -rf dist",
+        "dev": "nodemon",
+        "lint": "eslint",
+        "test": "jest --passWithNoTests",
+        "test:watch": "jest  --passWithNoTests --watch"
+    },
+    "dependencies": {
+        "@alpha/common": "workspace:0.0.0",
+        "@alpha/http-server": "workspace:0.0.0",
+        "@alpha/logger": "workspace:0.0.0",
+        "dotenv": "16.0.1",
+        "helmet": "5.1.0",
+        "inversify": "6.0.1",
+        "reflect-metadata": "0.1.13"
+    },
+    "devDependencies": {
+        "nodemon": "2.0.19",
+        "type-fest": "2.17.0"
+    }
+}
