@@ -18,5 +18,8 @@
             "@alpha/logger": ["./packages/logger/src"]
         }
     },
+    "ts-node": {
+        "files": true
+    },
     "exclude": ["node_modules"]
 }
