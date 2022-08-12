@@ -80,9 +80,6 @@ COPY --chown=node:node --from=builder /app/apps/service/dist ./apps/service/dist
 COPY --chown=node:node --from=builder /app/packages/common/package.json ./packages/common/package.json
 COPY --chown=node:node --from=builder /app/packages/common/dist ./packages/common/dist
 
-COPY --chown=node:node --from=builder /app/packages/http-server/package.json ./packages/http-server/package.json
-COPY --chown=node:node --from=builder /app/packages/http-server/dist ./packages/http-server/dist
-
 COPY --chown=node:node --from=builder /app/packages/logger/package.json ./packages/logger/package.json
 COPY --chown=node:node --from=builder /app/packages/logger/dist ./packages/logger/dist
 
