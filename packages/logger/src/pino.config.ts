@@ -9,10 +9,6 @@ const prettyTransport = {
     },
 };
 
-const nullTransport = {
-    targets: [],
-};
-
 export const config: Record<NodeEnv, LoggerOptions> = {
     development: {
         transport: prettyTransport,
@@ -20,7 +16,5 @@ export const config: Record<NodeEnv, LoggerOptions> = {
     test: {
         transport: prettyTransport,
     },
-    production: {
-        transport: nullTransport,
-    },
+    production: {},
 };
