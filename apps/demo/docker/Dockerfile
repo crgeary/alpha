@@ -22,7 +22,7 @@ RUN --mount=type=cache,id=pnpm-store,target=/root/.pnpm-store
 COPY turbo.json pnpm-workspace.yaml .
 COPY package.json pnpm-lock.yaml .
 
-COPY apps/service/package.json ./apps/service/package.json
+COPY apps/demo/package.json ./apps/demo/package.json
 
 COPY packages/common/package.json ./packages/common/package.json
 COPY packages/http-server/package.json ./packages/http-server/package.json
@@ -36,7 +36,7 @@ RUN pnpm install --frozen-lockfile
 
 FROM base as development
 
-WORKDIR /app/apps/service
+WORKDIR /app/apps/demo
 
 ENV NODE_ENV=development
 
@@ -54,7 +54,7 @@ ENV NODE_ENV=production
 
 COPY . .
 
-RUN pnpx turbo run build --filter=@alpha/service --no-cache
+RUN pnpx turbo run build --filter=@alpha/demo --no-cache
 
 
 # ==========
@@ -74,8 +74,8 @@ COPY --chown=node:node --from=builder /app/package.json \
                                       /app/pnpm-workspace.yaml \
                                       ./
 
-COPY --chown=node:node --from=builder /app/apps/service/package.json ./apps/service/package.json
-COPY --chown=node:node --from=builder /app/apps/service/dist ./apps/service/dist
+COPY --chown=node:node --from=builder /app/apps/demo/package.json ./apps/demo/package.json
+COPY --chown=node:node --from=builder /app/apps/demo/dist ./apps/demo/dist
 
 COPY --chown=node:node --from=builder /app/packages/common/package.json ./packages/common/package.json
 COPY --chown=node:node --from=builder /app/packages/common/dist ./packages/common/dist
@@ -85,6 +85,6 @@ COPY --chown=node:node --from=builder /app/packages/logger/dist ./packages/logge
 
 RUN pnpm install --filter=@alpha/* --frozen-lockfile --prod --no-optional
 
-WORKDIR /app/apps/service
+WORKDIR /app/apps/demo
 
 CMD ["dumb-init", "node", "dist/server.js"]
