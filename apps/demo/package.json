@@ -5,7 +5,7 @@
     "scripts": {
         "build": "tsc --project tsconfig.production.json",
         "check-ts": "tsc --noEmit",
-        "clean": "rm -r dist",
+        "clean": "rm -rf dist",
         "dev": "nodemon",
         "lint": "eslint"
     },
@@ -16,21 +16,10 @@
         "class-transformer": "0.5.1",
         "class-validator": "0.13.2",
         "dotenv": "16.0.1",
-        "express": "4.18.1",
-        "reflect-metadata": "0.1.13"
+        "express": "4.18.1"
     },
     "devDependencies": {
         "@types/express": "4.17.13",
-        "@types/node": "18.6.4",
-        "@typescript-eslint/eslint-plugin": "5.32.0",
-        "@typescript-eslint/parser": "5.32.0",
-        "eslint": "8.21.0",
-        "eslint-config-prettier": "8.5.0",
-        "eslint-plugin-prettier": "4.2.1",
-        "nodemon": "2.0.19",
-        "prettier": "2.7.1",
-        "ts-node": "10.9.1",
-        "type-fest": "2.18.0",
-        "typescript": "4.7.4"
+        "type-fest": "2.18.0"
     }
 }
