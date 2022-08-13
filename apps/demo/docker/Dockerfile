@@ -17,18 +17,16 @@ FROM pnpm AS base
 
 WORKDIR /app
 
-ENV PRISMA_SKIP_POSTINSTALL_GENERATE=true
-
 RUN --mount=type=cache,id=pnpm-store,target=/root/.pnpm-store
 
 COPY turbo.json pnpm-workspace.yaml .
 COPY package.json pnpm-lock.yaml .
 
-COPY apps/api/package.json ./apps/api/package.json
-COPY apps/api/src/db/schema.prisma ./apps/api/src/db/schema.prisma
+COPY apps/demo/package.json ./apps/demo/package.json
 
 COPY packages/common/package.json ./packages/common/package.json
 COPY packages/http-server/package.json ./packages/http-server/package.json
+COPY packages/logger/package.json ./packages/logger/package.json
 
 RUN pnpm install --frozen-lockfile
 
@@ -38,7 +36,7 @@ RUN pnpm install --frozen-lockfile
 
 FROM base as development
 
-WORKDIR /app/apps/api
+WORKDIR /app/apps/demo
 
 ENV NODE_ENV=development
 
@@ -56,7 +54,7 @@ ENV NODE_ENV=production
 
 COPY . .
 
-RUN pnpx turbo run build --filter=@alpha/api --no-cache
+RUN pnpx turbo run build --filter=@alpha/demo --no-cache
 
 
 # ==========
@@ -76,21 +74,17 @@ COPY --chown=node:node --from=builder /app/package.json \
                                       /app/pnpm-workspace.yaml \
                                       ./
 
-COPY --chown=node:node --from=builder /app/apps/api/package.json ./apps/api/package.json
-COPY --chown=node:node --from=builder /app/apps/api/src/db/schema.prisma ./apps/api/src/db/schema.prisma
-COPY --chown=node:node --from=builder /app/apps/api/dist ./apps/api/dist
+COPY --chown=node:node --from=builder /app/apps/demo/package.json ./apps/demo/package.json
+COPY --chown=node:node --from=builder /app/apps/demo/dist ./apps/demo/dist
 
 COPY --chown=node:node --from=builder /app/packages/common/package.json ./packages/common/package.json
 COPY --chown=node:node --from=builder /app/packages/common/dist ./packages/common/dist
 
-COPY --chown=node:node --from=builder /app/packages/http-server/package.json ./packages/http-server/package.json
-COPY --chown=node:node --from=builder /app/packages/http-server/dist ./packages/http-server/dist
+COPY --chown=node:node --from=builder /app/packages/logger/package.json ./packages/logger/package.json
+COPY --chown=node:node --from=builder /app/packages/logger/dist ./packages/logger/dist
 
-RUN pnpm install --filter=@alpha/api --frozen-lockfile --prod --no-optional
+RUN pnpm install --filter=@alpha/* --frozen-lockfile --prod --no-optional
 
-WORKDIR /app/apps/api
-
-RUN pnpm dlx prisma generate --schema=./src/db/schema.prisma
-RUN rm ./src/db/schema.prisma
+WORKDIR /app/apps/demo
 
 CMD ["dumb-init", "node", "dist/server.js"]

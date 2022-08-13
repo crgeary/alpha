@@ -6,12 +6,10 @@
     "scripts": {
         "build": "tsc --project tsconfig.production.json",
         "check-ts": "tsc --noEmit",
-        "clean": "rm -r dist"
+        "clean": "rm -rf dist"
     },
     "devDependencies": {
-        "@types/node": "18.6.4",
-        "pino-pretty": "8.1.0",
-        "typescript": "4.7.4"
+        "pino-pretty": "8.1.0"
     },
     "dependencies": {
         "@alpha/common": "workspace:0.0.0",

@@ -1,6 +1,5 @@
 {
     "$schema": "https://turborepo.org/schema.json",
-    "baseBranch": "origin/main",
     "globalDependencies": ["tsconfig.json"],
     "pipeline": {
         "build": {
@@ -11,7 +10,7 @@
             "outputs": []
         },
         "clean": {
-            "outputs": ["dist/**", ".next/**"]
+            "cache": false
         },
         "dev": {
             "cache": false

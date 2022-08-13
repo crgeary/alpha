@@ -6,10 +6,10 @@
     "scripts": {
         "build": "tsc --project tsconfig.production.json",
         "check-ts": "tsc --noEmit",
-        "clean": "rm -r dist"
+        "clean": "rm -rf dist"
     },
-    "devDependencies": {
-        "@types/node": "18.6.4",
-        "typescript": "4.7.4"
+    "dependencies": {
+        "class-transformer": "0.5.1",
+        "class-validator": "0.13.2"
     }
 }
