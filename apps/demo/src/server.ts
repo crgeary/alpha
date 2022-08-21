@@ -1,6 +1,5 @@
 import { validateEnv } from "@alpha/common";
 import { app } from "./app";
-import { logger } from "./common/logger";
 import { EnvSchema } from "./env/env.schema";
 
 async function bootstrap() {
@@ -9,7 +8,8 @@ async function bootstrap() {
     await validateEnv(EnvSchema);
 
     const server = app.listen(port, () => {
-        logger.info(`🚀 Listening at http://localhost:${port}`);
+        // eslint-disable-next-line no-console
+        console.log(`🚀 Listening at http://localhost:${port}`);
     });
 
     const shutdown = () => {

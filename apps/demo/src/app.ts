@@ -7,6 +7,8 @@ import express from "express";
 
 const app = express();
 
-app.get("*", (_, res) => res.json({ message: `Hello World!` }));
+app.get("/", async (req, res) => {
+    return res.json({ message: `Hello World!` });
+});
 
 export { app };
