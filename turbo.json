@@ -4,7 +4,7 @@
     "pipeline": {
         "build": {
             "dependsOn": ["^build"],
-            "outputs": ["dist/**", ".next/**"]
+            "outputs": ["dist/**"]
         },
         "check-ts": {
             "outputs": []
@@ -20,7 +20,7 @@
         },
         "test": {
             "outputs": ["coverage/**"],
-            "inputs": ["src/**/*.ts", "src/**/*.tsx"]
+            "inputs": ["src/**/*.ts"]
         }
     }
 }
