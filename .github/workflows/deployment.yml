@@ -1,0 +1,37 @@
+name: Deployment
+
+on:
+  push:
+    paths:
+      - ".github/workflows/deployment.yml"
+      - "applications/demo/**"
+      - "packages/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+    branches:
+      - main
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+    steps:
+      - name: Checkout
+      - uses: actions/checkout@v3
+
+      - name: Setup Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Login to GCR
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Deploy
+        run: |
+          docker buildx install
+          sh apps/demo/scripts/deploy.production.sh
