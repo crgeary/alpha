@@ -1,0 +1,21 @@
+name: Deployment
+
+on:
+  push:
+    paths:
+      - ".github/workflows/deployment.yml"
+      - "applications/demo/**"
+      - "packages/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+    branches:
+      - main
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+    steps:
+      - name: deploy
+        run: echo 1
