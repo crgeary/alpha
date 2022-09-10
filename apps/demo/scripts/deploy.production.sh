@@ -12,9 +12,12 @@ error() {
 
 # --
 
-while getopts i: o; do
+url="?"
+
+while getopts i:u: o; do
     case $o in
         (i) image=$OPTARG ;;
+        (u) url=$OPTARG ;;
     esac
 done
 
@@ -29,4 +32,4 @@ fi
 # todo: add k8s deployment
 
 echo ""
-output "Deployed image [$image] to registry"
+output "Deployed image [$image] to $url"

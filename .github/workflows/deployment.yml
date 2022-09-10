@@ -14,12 +14,14 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}-demo
+  DEPLOY_URL: https://demo.alpha.crgeary.dev
 
 jobs:
   deployment:
     runs-on: ubuntu-latest
     environment:
       name: production
+      url: ${{ env.DEPLOY_URL }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -55,4 +57,5 @@ jobs:
         run: |
           echo "Deploying to k8s..."
           sh apps/demo/scripts/deploy.production.sh \
-            -i "${{ steps.build.outputs.metadata.image.name }}"
+            -i "${{ steps.build.outputs.metadata.containerimage.buildinfo.image.name }}" \
+            -u "${{ env.DEPLOY_URL }}"
