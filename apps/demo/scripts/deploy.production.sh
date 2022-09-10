@@ -6,24 +6,27 @@ output() {
     echo "\033[1;35m${1}\033[0m"
 }
 
-# --
-
-COMMIT=$(git rev-parse HEAD)
-BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD | sed -E s/[^a-zA-Z0-9]+/-/g | sed -E s/^-+\|-+$//g | tr A-Z a-z)
-TAG=$(echo -n "$BRANCH_NAME-$COMMIT" | shasum | awk '{ print $1 }')
+error() {
+    echo "\033[1;31m${1}\033[0m"
+}
 
 # --
 
-echo ""
-output "Building container..."
+while getopts i: o; do
+    case $o in
+        (i) image=$OPTARG ;;
+    esac
+done
 
-docker build \
-  --target=production \
-  --file apps/demo/docker/Dockerfile \
-  --tag crgeary/alpha-demo:$TAG \
-  --output "type=image,push=true" .
+shift "$((OPTIND - 1))"
+
+if [[ -z $image ]]; then
+    error "Validation error!"
+    echo "Container image was not provided"
+    exit 1
+fi
 
 # todo: add k8s deployment
 
 echo ""
-output "Deployed to container registry"
+output "Deployed image [$image] to registry"

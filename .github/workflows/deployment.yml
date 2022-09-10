@@ -53,7 +53,6 @@ jobs:
 
       - name: Deploy
         run: |
-          echo "Deploying..."
-          echo "Meta: ${{ steps.build.outputs.metadata }}"
-          echo "Id: ${{ steps.build.outputs.imageid }}"
-          # sh apps/demo/scripts/deploy.production.sh
+          echo "Deploying to k8s..."
+          sh apps/demo/scripts/deploy.production.sh \
+            -i "${{ steps.build.outputs.metadata.image.name }}"
