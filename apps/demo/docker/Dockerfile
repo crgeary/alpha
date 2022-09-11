@@ -83,7 +83,7 @@ COPY --chown=node:node --from=builder /app/packages/common/dist ./packages/commo
 COPY --chown=node:node --from=builder /app/packages/logger/package.json ./packages/logger/package.json
 COPY --chown=node:node --from=builder /app/packages/logger/dist ./packages/logger/dist
 
-RUN pnpm install --filter=@alpha/* --frozen-lockfile --prod --no-optional
+RUN pnpm install --filter-prod="@alpha/*" --frozen-lockfile --prod
 
 WORKDIR /app/apps/demo
 

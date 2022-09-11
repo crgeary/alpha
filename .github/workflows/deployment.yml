@@ -56,8 +56,6 @@ jobs:
 
       - name: Deploy
         run: |
-          echo "Deploying to k8s..."
-          echo "Image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.version }}"
           sh apps/demo/scripts/deploy.production.sh \
-            -i "${{ steps.build.outputs.metadata.containerimage.buildinfo.image.name }}" \
+            -i "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.version }}" \
             -u "${{ env.DEPLOY_URL }}"
