@@ -48,14 +48,16 @@ jobs:
         id: build
         with:
           context: .
-          push: true
           file: apps/demo/docker/Dockerfile
-          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta.outputs.tags }}
+          target: production
+          push: true
 
       - name: Deploy
         run: |
           echo "Deploying to k8s..."
+          echo "Image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.version }}"
           sh apps/demo/scripts/deploy.production.sh \
             -i "${{ steps.build.outputs.metadata.containerimage.buildinfo.image.name }}" \
             -u "${{ env.DEPLOY_URL }}"
