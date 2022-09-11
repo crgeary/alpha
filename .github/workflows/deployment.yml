@@ -57,5 +57,5 @@ jobs:
       - name: Deploy
         run: |
           sh apps/demo/scripts/deploy.production.sh \
-            -i "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.version }}" \
+            -i "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@${{ steps.build.outputs.imageid }}" \
             -u "${{ env.DEPLOY_URL }}"
