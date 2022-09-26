@@ -58,6 +58,7 @@ jobs:
         run: |
           echo "Test SHA #1: ${GITHUB_SHA}"
           echo "Test SHA #2: ${{ github.sha }}"
+          echo "Test SHA #2: ${{ fromJson(secrets.TEST).alpha-numeric }}"
           sh apps/demo/scripts/deploy.production.sh \
             -i "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@${{ steps.build.outputs.imageid }}" \
             -u "${{ env.DEPLOY_URL }}"
