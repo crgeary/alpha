@@ -56,6 +56,7 @@ jobs:
 
       - name: Deploy
         run: |
+          echo "Test SHA: ${GITHUB_SHA}"
           sh apps/demo/scripts/deploy.production.sh \
             -i "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@${{ steps.build.outputs.imageid }}" \
             -u "${{ env.DEPLOY_URL }}"
