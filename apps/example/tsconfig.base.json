@@ -1,0 +1,10 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "target": "ES2022",
+        "module": "CommonJS",
+        "types": ["reflect-metadata", "node"],
+        "lib": ["ES2022"]
+    },
+    "include": ["./src", "env.d.ts"]
+}

@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: demo-deployment
+  name: example-deployment
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: demo
+      app: example
   template:
     metadata:
       labels:
-        app: demo
+        app: example
     spec:
       containers:
-        - name: demo
-          image: ghcr.io/crgeary/alpha-demo:main
+        - name: example
+          image: ghcr.io/crgeary/alpha-example:main
           ports:
             - containerPort: 4000
           resources:
