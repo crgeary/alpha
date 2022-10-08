@@ -48,6 +48,6 @@ jobs:
           push: true
       - name: Deploy
         run: |
-          sh apps/${{ inputs.app-name }}/scripts/deploy.production.sh \
+          sh scripts/deploy.production.sh \
             -i "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@${{ steps.build.outputs.imageid }}" \
             -u "${{ env.DEPLOY_URL }}"
