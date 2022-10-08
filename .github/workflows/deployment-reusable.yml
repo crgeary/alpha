@@ -1,0 +1,53 @@
+name: Deployment
+
+on:
+  workflow_call:
+    inputs:
+      app-name:
+        required: true
+        type: string
+
+env:
+  REGISTRY: ghcr.io
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      DEPLOY_URL: https://${{ inputs.app-name }}.alpha.crgeary.dev
+      IMAGE_NAME: ${{ github.repository }}-${{ inputs.app-name }}
+    environment:
+      name: production
+      url: ${{ env.DEPLOY_URL }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Login to GCR
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Setup Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v2
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v3
+        id: build
+        with:
+          context: .
+          file: apps/${{ inputs.app-name }}/docker/Dockerfile
+          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta.outputs.tags }}
+          target: production
+          push: true
+      - name: Deploy
+        run: |
+          sh apps/${{ inputs.app-name }}/scripts/deploy.production.sh \
+            -i "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@${{ steps.build.outputs.imageid }}" \
+            -u "${{ env.DEPLOY_URL }}"
