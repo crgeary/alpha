@@ -20,9 +20,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Setup Buildx
-        id: buildx
-        uses: docker/setup-buildx-action@v2
       - name: Login to GCR
         uses: docker/login-action@v2
         with:
@@ -40,12 +37,14 @@ jobs:
       name: production
       url: ${{ env.DEPLOY_URL }}
     steps:
+      - name: Setup Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v2
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v4
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
         id: build
@@ -56,7 +55,6 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           target: production
           push: true
-
       - name: Deploy
         run: |
           sh apps/demo/scripts/deploy.production.sh \
@@ -73,12 +71,14 @@ jobs:
       name: production
       url: ${{ env.DEPLOY_URL }}
     steps:
+      - name: Setup Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v2
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v4
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
         id: build
@@ -89,7 +89,6 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           target: production
           push: true
-
       - name: Deploy
         run: |
           sh apps/example/scripts/deploy.production.sh \
