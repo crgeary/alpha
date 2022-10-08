@@ -3,8 +3,8 @@ name: Deployment
 on:
   push:
     paths:
-      - ".github/workflows/deployment.yaml"
-      - ".github/workflows/deployment-reusable.yaml"
+      - ".github/workflows/deployment.yml"
+      - ".github/workflows/deployment-reusable.yml"
       - "applications/**"
     branches:
       - main
