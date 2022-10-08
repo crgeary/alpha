@@ -16,4 +16,4 @@ jobs:
         app-name: [demo, example]
     uses: crgeary/alpha/.github/workflows/deployment-reusable.yml@main
     with:
-      app-name: ${{ matrix.target }}
+      app-name: ${{ matrix.app-name }}

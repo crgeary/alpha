@@ -14,8 +14,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      DEPLOY_URL: https://${{ input.app-name }}.alpha.crgeary.dev
-      IMAGE_NAME: ${{ github.repository }}-${{ input.app-name }}
+      DEPLOY_URL: https://${{ inputs.app-name }}.alpha.crgeary.dev
+      IMAGE_NAME: ${{ github.repository }}-${{ inputs.app-name }}
     environment:
       name: production
       url: ${{ env.DEPLOY_URL }}
@@ -41,13 +41,13 @@ jobs:
         id: build
         with:
           context: .
-          file: apps/${{ input.app-name }}/docker/Dockerfile
+          file: apps/${{ inputs.app-name }}/docker/Dockerfile
           labels: ${{ steps.meta.outputs.labels }}
           tags: ${{ steps.meta.outputs.tags }}
           target: production
           push: true
       - name: Deploy
         run: |
-          sh apps/${{ input.app-name }}/scripts/deploy.production.sh \
+          sh apps/${{ inputs.app-name }}/scripts/deploy.production.sh \
             -i "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@${{ steps.build.outputs.imageid }}" \
             -u "${{ env.DEPLOY_URL }}"
